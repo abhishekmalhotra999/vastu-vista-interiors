@@ -61,115 +61,195 @@ const team = [
   },
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
+    { "@type": "ListItem", position: 2, name: "About Us", item: "https://vastuvistainteriors.com/about/" },
+  ],
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://vastuvistainteriors.com/#organization",
+  name: "Vastu Vista Interiors",
+  url: "https://vastuvistainteriors.com",
+  telephone: "+919038127376",
+  foundingDate: "2014",
+  description:
+    "Vastu Vista Interiors is a leading interior design company in Kolkata with over 10 years of experience transforming homes, offices, and commercial spaces.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kolkata",
+    addressRegion: "West Bengal",
+    addressCountry: "IN",
+  },
+  areaServed: { "@type": "City", name: "Kolkata" },
+};
+
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#2D2D2D] py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#CCCCCC] text-sm uppercase tracking-widest mb-3">Our Story</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            About Vastu Vista Interiors
-          </h1>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            Kolkata&apos;s most trusted interior decoration company — transforming homes, offices, and
-            commercial spaces since 2014.
-          </p>
-        </div>
-      </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
-      {/* Story */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-[#8C8C8C] text-sm uppercase tracking-widest mb-3">Who We Are</p>
-            <h2 className="text-3xl font-bold text-[#2D2D2D] mb-5">
-              Crafting Beautiful Spaces in Kolkata Since 2014
-            </h2>
-            <p className="text-[#555555] text-base leading-relaxed mb-4">
-              Vastu Vista Interiors was founded with a single mission: to make beautiful, thoughtful
-              interior design accessible to every home and business in Kolkata. What began as a small
-              studio in South Kolkata has grown into one of the city&apos;s most recognized interior design
-              companies, with over 500 completed projects across 20+ locations.
-            </p>
-            <p className="text-[#555555] text-base leading-relaxed mb-4">
-              Our name combines two powerful concepts — <em>Vastu</em>, the ancient Indian science of
-              harmonious space design, and <em>Vista</em>, meaning a beautiful view or perspective. This
-              philosophy guides every project: we create spaces that are not only visually stunning but
-              also deeply balanced and functional.
-            </p>
-            <p className="text-[#555555] text-base leading-relaxed">
-              From modular kitchens and false ceilings to complete home renovations and restaurant
-              interiors — we handle every project with the same passion, precision, and commitment to
-              excellence that has earned us the trust of hundreds of satisfied clients.
-            </p>
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80"
-              alt="Vastu Vista Interiors - Interior decoration company in Kolkata"
-              className="w-full h-80 object-cover"
-            />
-          </div>
+      {/* ─── HERO ── */}
+      <section className="relative bg-[#1A1A1A] overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/80 to-transparent" />
         </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-16 px-4 bg-[#F8F8F8]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-[#8C8C8C] text-sm uppercase tracking-widest mb-2">What Drives Us</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2D2D2D]">Our Core Values</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {values.map((v) => (
-              <div key={v.title} className="bg-white p-7 rounded-xl border border-[#E5E5E5]">
-                <div className="text-3xl mb-4">{v.icon}</div>
-                <h3 className="font-semibold text-[#2D2D2D] text-base mb-2">{v.title}</h3>
-                <p className="text-[#8C8C8C] text-sm leading-relaxed">{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-14 px-4 bg-[#2D2D2D]">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: "500+", label: "Projects Completed" },
-            { value: "10+", label: "Years Experience" },
-            { value: "20+", label: "Kolkata Locations" },
-            { value: "50+", label: "Skilled Craftsmen" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <p className="text-4xl font-bold text-white">{s.value}</p>
-              <p className="text-sm text-[#CCCCCC] mt-2">{s.label}</p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-28 lg:py-40">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-10 bg-[#8C8C8C]" />
+              <p className="text-xs uppercase tracking-[0.25em] text-[#8C8C8C]">Our Story</p>
             </div>
-          ))}
+            <h1 className="text-5xl sm:text-6xl font-bold text-white leading-[1.05] mb-6">
+              About Vastu Vista<br />Interiors
+            </h1>
+            <p className="text-gray-300 text-lg leading-relaxed max-w-xl">
+              Kolkata&apos;s most trusted interior decoration company — transforming homes, offices,
+              and commercial spaces with vision and craftsmanship since 2014.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-[#8C8C8C] text-sm uppercase tracking-widest mb-2">The People Behind the Work</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2D2D2D]">Meet Our Team</h2>
+      {/* ─── STORY ── */}
+      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-px w-10 bg-[#2D2D2D]" />
+              <p className="text-xs uppercase tracking-[0.25em] text-[#8C8C8C]">Who We Are</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2D2D2D] leading-[1.1] mb-8">
+              Crafting Beautiful<br />Spaces Since 2014
+            </h2>
+            <div className="space-y-5 text-[#555555] text-base leading-relaxed">
+              <p>
+                Vastu Vista Interiors was founded with a single mission: to make beautiful, thoughtful
+                interior design accessible to every home and business in Kolkata. What began as a small
+                studio in South Kolkata has grown into one of the city&apos;s most recognized interior
+                design companies, with over 500 completed projects across 20+ locations.
+              </p>
+              <p>
+                Our name combines two powerful concepts —{" "}
+                <span className="text-[#2D2D2D] font-semibold">Vastu</span>, the ancient Indian science
+                of harmonious space design, and{" "}
+                <span className="text-[#2D2D2D] font-semibold">Vista</span>, meaning a beautiful view
+                or perspective. This philosophy guides every project: we create spaces that are not only
+                visually stunning but deeply balanced and functional.
+              </p>
+              <p>
+                From modular kitchens and false ceilings to complete home renovations and restaurant
+                interiors — every project is handled with the same passion, precision, and commitment
+                to excellence that has earned us the trust of hundreds of satisfied clients.
+              </p>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="aspect-[4/5] overflow-hidden rounded-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+                alt="Interior design craftsmanship — Vastu Vista Interiors Kolkata"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div className="absolute -bottom-6 -left-6 bg-[#1A1A1A] text-white px-7 py-6 rounded-2xl shadow-2xl">
+              <p className="text-4xl font-bold leading-none">500+</p>
+              <p className="text-sm text-gray-400 mt-2">Projects Completed</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── VALUES (dark) ── */}
+      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-[#1A1A1A]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20">
+            <div className="lg:col-span-4">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-10 bg-[#8C8C8C]" />
+                <p className="text-xs uppercase tracking-[0.25em] text-[#8C8C8C]">What Drives Us</p>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.1] mb-6">
+                Our Core<br />Values
+              </h2>
+              <p className="text-gray-400 text-base leading-relaxed mb-12">
+                Six principles that define how we approach every project, every space, and every client relationship.
+              </p>
+              <div className="grid grid-cols-2 gap-8 pt-10 border-t border-white/10">
+                {[
+                  { v: "500+", l: "Projects" },
+                  { v: "10+", l: "Years" },
+                  { v: "20+", l: "Locations" },
+                  { v: "50+", l: "Craftsmen" },
+                ].map((s) => (
+                  <div key={s.l}>
+                    <p className="text-3xl font-bold text-white leading-none">{s.v}</p>
+                    <p className="text-xs text-gray-500 mt-2">{s.l}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+              {values.map((v, i) => (
+                <div key={v.title} className="border-t border-white/10 py-8">
+                  <p className="text-[#555555] text-xs font-mono mb-3 tracking-[0.2em]">0{i + 1}</p>
+                  <h3 className="font-bold text-white text-base mb-3">{v.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{v.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TEAM ── */}
+      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-[#F8F8F8]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items-end gap-6 mb-16">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-px w-10 bg-[#2D2D2D]" />
+                <p className="text-xs uppercase tracking-[0.25em] text-[#8C8C8C]">The People</p>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#2D2D2D] leading-[1.1]">
+                Meet Our Team
+              </h2>
+            </div>
+            <p className="text-[#8C8C8C] text-base leading-relaxed lg:max-w-sm">
+              A passionate team of designers, project managers, and skilled craftsmen — united by
+              a shared love for creating extraordinary interiors.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-4 border-4 border-[#E5E5E5]">
+              <div key={member.name} className="bg-white rounded-2xl overflow-hidden border border-[#E5E5E5]">
+                <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
-                <h3 className="font-semibold text-[#2D2D2D] text-base">{member.name}</h3>
-                <p className="text-[#8C8C8C] text-xs mb-3">{member.role}</p>
-                <p className="text-[#555555] text-sm leading-relaxed">{member.bio}</p>
+                <div className="p-7">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#8C8C8C] mb-2 font-medium">
+                    {member.role}
+                  </p>
+                  <h3 className="font-bold text-[#2D2D2D] text-lg mb-3">{member.name}</h3>
+                  <p className="text-[#8C8C8C] text-sm leading-relaxed">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -178,7 +258,7 @@ export default function AboutPage() {
 
       <ContactCTA
         heading="Let's Create Something Beautiful Together"
-        subtext="Partner with Kolkata's most trusted interior design team for your next project."
+        subtext="Share your vision with our design team — we'll turn it into a space you'll love for years."
       />
     </>
   );

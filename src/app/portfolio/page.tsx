@@ -85,53 +85,79 @@ const galleryImages = [
 export default function PortfolioPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#2D2D2D] py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#CCCCCC] text-sm uppercase tracking-widest mb-3">Our Work</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
-            Interior Design Portfolio
-          </h1>
-          <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
-            A curated gallery of residential and commercial interior design projects completed
-            across Kolkata by Vastu Vista Interiors.
-          </p>
+      {/* ─── HERO ── */}
+      <section className="relative bg-[#1A1A1A] overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={galleryImages[0].src}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover opacity-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/85 to-[#1A1A1A]/30" />
         </div>
-      </section>
-
-      {/* Stats bar */}
-      <section className="bg-[#F8F8F8] border-b border-[#E5E5E5] py-8 px-4">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            { value: "500+", label: "Projects" },
-            { value: "20+", label: "Locations" },
-            { value: "5", label: "Service Categories" },
-            { value: "10+", label: "Years" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p className="text-2xl font-bold text-[#2D2D2D]">{s.value}</p>
-              <p className="text-sm text-[#8C8C8C]">{s.label}</p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-28 lg:py-40">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-10 bg-[#8C8C8C]" />
+                <p className="text-xs uppercase tracking-[0.25em] text-[#8C8C8C]">Our Work</p>
+              </div>
+              <h1 className="text-5xl sm:text-6xl font-bold text-white leading-[1.05] mb-6">
+                Interior Design<br />Portfolio
+              </h1>
+              <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-10">
+                A curated gallery of residential and commercial interior design projects completed
+                across Kolkata by Vastu Vista Interiors.
+              </p>
+              <div className="flex items-center pt-8 border-t border-white/15 gap-0">
+                {[
+                  { v: "500+", l: "Projects" },
+                  { v: "12+", l: "Project Types" },
+                  { v: "20+", l: "Locations" },
+                ].map((s, i) => (
+                  <div key={s.l} className="flex items-center">
+                    <div className="pr-8">
+                      <p className="text-3xl font-bold text-white leading-none">{s.v}</p>
+                      <p className="text-xs text-gray-400 mt-1.5">{s.l}</p>
+                    </div>
+                    {i < 2 && <div className="h-8 w-px bg-white/15 mr-8" />}
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+            <div className="hidden lg:grid grid-cols-2 gap-3">
+              {galleryImages.slice(0, 4).map((img) => (
+                <div key={img.label} className="aspect-square overflow-hidden rounded-xl opacity-70">
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Gallery grid */}
-      <section className="py-14 px-4 bg-white">
+      {/* ─── GALLERY ── */}
+      <section className="py-16 px-6 sm:px-10 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {galleryImages.map((img) => (
-              <div key={img.label} className="group relative overflow-hidden rounded-xl aspect-[4/3] shadow-sm">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
+            {galleryImages.map((img, i) => (
+              <div
+                key={img.label}
+                className={`break-inside-avoid mb-5 relative group overflow-hidden rounded-2xl ${
+                  i % 4 === 0 ? "aspect-[3/4]" : "aspect-[4/3]"
+                }`}
+              >
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white font-semibold text-sm">{img.label}</p>
-                  <p className="text-gray-300 text-xs">{img.location}, Kolkata</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5">
+                  <p className="text-white font-bold text-base leading-none">{img.label}</p>
+                  <p className="text-white/60 text-xs mt-1.5">{img.location}, Kolkata</p>
                 </div>
               </div>
             ))}
