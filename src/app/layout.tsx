@@ -60,13 +60,15 @@ const jsonLd = {
   description:
     "Best interior designer in Kolkata offering home interior design, modular kitchen design, false ceiling, bedroom, living room and commercial interior design services across 20+ locations.",
   url: "https://vastuvistainteriors.com",
-  telephone: "+919038127376",
+  telephone: "+916290415915",
   email: "info@vastuvistainteriors.com",
   image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
     addressLocality: "Kolkata",
     addressRegion: "West Bengal",
+    postalCode: "700039",
     addressCountry: "IN",
   },
   geo: {
@@ -85,7 +87,7 @@ const jsonLd = {
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+919038127376",
+    telephone: "+916290415915",
     contactType: "customer service",
     availableLanguage: ["English", "Bengali", "Hindi"],
   },

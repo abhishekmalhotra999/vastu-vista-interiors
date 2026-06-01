@@ -13,7 +13,7 @@ export default function ContactForm() {
         const text = encodeURIComponent(
           `Hi Vastu Vista Interiors!\n\nName: ${name}\nPhone: ${phone}\nService: ${service}\nMessage: ${message}`
         );
-        window.open(`https://wa.me/919038127376?text=${text}`, "_blank");
+        window.open(`https://wa.me/916290415915?text=${text}`, "_blank");
       }}
       className="space-y-5"
     >

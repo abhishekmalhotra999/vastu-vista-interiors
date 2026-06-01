@@ -43,7 +43,7 @@ export default function ProductCard({ product, locationSlug }: ProductCardProps)
             View Details
           </Link>
           <a
-            href={`https://wa.me/919038127376?text=${encodeURIComponent(
+            href={`https://wa.me/916290415915?text=${encodeURIComponent(
               locationSlug
                 ? `Hi! I'm interested in ${product.name} in ${locationSlug.replace(/-/g, " ")}, Kolkata.`
                 : `Hi! I'm interested in ${product.name} in Kolkata.`

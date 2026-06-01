@@ -55,7 +55,7 @@ export default async function ProductLocationPage({ params }: Props) {
   const location = locations.find((l) => l.slug === locationSlug);
   if (!product || !location) notFound();
 
-  const waLink = `https://wa.me/919038127376?text=${encodeURIComponent(
+  const waLink = `https://wa.me/916290415915?text=${encodeURIComponent(
     `Hi Vastu Vista Interiors! I'm interested in ${product.name} in ${location.name}, Kolkata. Please share details and pricing.`
   )}`;
 
@@ -83,11 +83,13 @@ export default async function ProductLocationPage({ params }: Props) {
       "@type": "LocalBusiness",
       "@id": "https://vastuvistainteriors.com/#business",
       name: "Vastu Vista Interiors",
-      telephone: "+919038127376",
+      telephone: "+916290415915",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
         addressLocality: "Kolkata",
         addressRegion: "West Bengal",
+        postalCode: "700039",
         addressCountry: "IN",
       },
     },
@@ -162,7 +164,7 @@ export default async function ProductLocationPage({ params }: Props) {
                 </svg>
                 WhatsApp for Free Quote
               </a>
-              <a href="tel:+919038127376"
+              <a href="tel:+916290415915"
                 className="flex items-center gap-2 text-white font-semibold px-8 py-4 rounded-full border border-white/35 hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all text-sm">
                 Call +91 90381 27376
               </a>

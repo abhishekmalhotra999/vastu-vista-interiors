@@ -93,14 +93,16 @@ const organizationSchema = {
   "@id": "https://vastuvistainteriors.com/#organization",
   name: "Vastu Vista Interiors",
   url: "https://vastuvistainteriors.com",
-  telephone: "+919038127376",
+  telephone: "+916290415915",
   foundingDate: "2014",
   description:
     "Vastu Vista Interiors is a leading interior design company in Kolkata with over 10 years of experience transforming homes, offices, and commercial spaces.",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
     addressLocality: "Kolkata",
     addressRegion: "West Bengal",
+    postalCode: "700039",
     addressCountry: "IN",
   },
   areaServed: { "@type": "City", name: "Kolkata" },

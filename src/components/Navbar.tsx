@@ -46,7 +46,7 @@ export default function Navbar() {
 
           {/* WhatsApp CTA — desktop */}
           <a
-            href="https://wa.me/919038127376?text=Hi%20Vastu%20Vista%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services."
+            href="https://wa.me/916290415915?text=Hi%20Vastu%20Vista%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services."
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 bg-[#25D366] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#1ebe5c] transition-colors duration-200"
@@ -93,7 +93,7 @@ export default function Navbar() {
           ))}
           <div className="pt-3">
             <a
-              href="https://wa.me/919038127376?text=Hi%20Vastu%20Vista%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services."
+              href="https://wa.me/916290415915?text=Hi%20Vastu%20Vista%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-[#25D366] text-white text-sm font-semibold px-4 py-2.5 rounded-full"

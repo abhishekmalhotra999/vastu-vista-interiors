@@ -25,10 +25,10 @@ export const metadata: Metadata = {
 };
 
 const contactDetails = [
-  { label: "Phone", value: "+91 90381 27376", href: "tel:+919038127376" },
-  { label: "WhatsApp", value: "+91 90381 27376", href: "https://wa.me/919038127376" },
+  { label: "Phone", value: "+91 62904 15915", href: "tel:+916290415915" },
+  { label: "WhatsApp", value: "+91 62904 15915", href: "https://wa.me/916290415915" },
   { label: "Email", value: "info@vastuvistainteriors.com", href: "mailto:info@vastuvistainteriors.com" },
-  { label: "Address", value: "Kolkata, West Bengal (Office address coming soon)", href: null },
+  { label: "Address", value: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala, Kolkata 700039", href: null },
 ];
 
 const breadcrumbSchema = {
@@ -90,7 +90,7 @@ export default function ContactPage() {
 
             {/* WhatsApp primary CTA */}
             <a
-              href="https://wa.me/919038127376?text=Hi%20Vastu%20Vista%20Interiors!%20I%27d%20like%20a%20free%20consultation."
+              href="https://wa.me/916290415915?text=Hi%20Vastu%20Vista%20Interiors!%20I%27d%20like%20a%20free%20consultation."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 bg-[#25D366] text-white font-semibold px-7 py-4 rounded-2xl hover:bg-[#1ebe5c] transition-colors mb-10 w-fit shadow-lg shadow-[#25D366]/20"

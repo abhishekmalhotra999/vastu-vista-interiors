@@ -3,7 +3,7 @@
 export default function WhatsAppFloatingButton() {
   return (
     <a
-      href="https://wa.me/919038127376?text=Hi%20Vastu%20Vista%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services."
+      href="https://wa.me/916290415915?text=Hi%20Vastu%20Vista%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services."
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#1ebe5c] hover:scale-110 transition-all duration-300"

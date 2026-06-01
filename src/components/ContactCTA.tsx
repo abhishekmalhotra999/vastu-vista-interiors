@@ -30,7 +30,7 @@ export default function ContactCTA({
         <p className="text-gray-300 mb-8 text-base">{subtext}</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href={`https://wa.me/919038127376?text=${waText}`}
+            href={`https://wa.me/916290415915?text=${waText}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-[#25D366] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#1ebe5c] transition-colors text-sm"
@@ -42,7 +42,7 @@ export default function ContactCTA({
             WhatsApp for Free Quote
           </a>
           <a
-            href="tel:+919038127376"
+            href="tel:+916290415915"
             className="flex items-center gap-2 bg-white text-[#2D2D2D] font-semibold px-6 py-3 rounded-full hover:bg-[#F8F8F8] transition-colors text-sm border border-white"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

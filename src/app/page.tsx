@@ -234,7 +234,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mb-14">
               <a
-                href="https://wa.me/919038127376?text=Hi%20Vastu%20Vista%20Interiors!%20I%27d%20like%20a%20free%20consultation."
+                href="https://wa.me/916290415915?text=Hi%20Vastu%20Vista%20Interiors!%20I%27d%20like%20a%20free%20consultation."
                 target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2.5 bg-[#25D366] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#1ebe5c] transition-all duration-200 text-sm sm:text-base shadow-xl shadow-[#25D366]/30"
               >
@@ -358,7 +358,7 @@ export default function HomePage() {
                 affordable interior designers Kolkata to luxury interior designers Kolkata.
               </p>
               <a
-                href="https://wa.me/919038127376?text=Hi%20Vastu%20Vista%20Interiors!%20I%27d%20like%20to%20know%20more%20about%20your%20services."
+                href="https://wa.me/916290415915?text=Hi%20Vastu%20Vista%20Interiors!%20I%27d%20like%20to%20know%20more%20about%20your%20services."
                 target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white text-[#1A1A1A] font-semibold px-7 py-3.5 rounded-full hover:bg-[#F0F0F0] transition-colors text-sm"
               >
@@ -457,7 +457,7 @@ export default function HomePage() {
                 and Salt Lake to Howrah and Barasat.
               </p>
               <a
-                href="https://wa.me/919038127376?text=Hi%21%20I%27d%20like%20to%20check%20if%20you%20serve%20my%20area."
+                href="https://wa.me/916290415915?text=Hi%21%20I%27d%20like%20to%20check%20if%20you%20serve%20my%20area."
                 target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#2D2D2D] text-white font-semibold px-7 py-3.5 rounded-full hover:bg-[#1A1A1A] transition-colors text-sm"
               >
@@ -577,7 +577,7 @@ export default function HomePage() {
                 no-obligation consultation.
               </p>
               <a
-                href="https://wa.me/919038127376?text=Hi%2C%20I%20have%20some%20questions%20about%20your%20interior%20design%20services."
+                href="https://wa.me/916290415915?text=Hi%2C%20I%20have%20some%20questions%20about%20your%20interior%20design%20services."
                 target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-[#2D2D2D] text-[#2D2D2D] font-semibold px-7 py-3.5 rounded-full hover:bg-[#2D2D2D] hover:text-white transition-colors text-sm"
               >

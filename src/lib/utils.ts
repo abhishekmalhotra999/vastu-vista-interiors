@@ -10,7 +10,7 @@ export function getLocationBySlug(slug: string): Location | undefined {
 }
 
 export function generateWhatsAppLink(productName?: string, locationName?: string): string {
-  const base = "https://wa.me/919038127376";
+  const base = "https://wa.me/916290415915";
   if (productName && locationName) {
     const text = encodeURIComponent(
       `Hi Vastu Vista Interiors! I'm interested in ${productName} services in ${locationName}, Kolkata. Please share details and pricing.`

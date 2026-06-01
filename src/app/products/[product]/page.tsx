@@ -62,11 +62,13 @@ export default async function ProductPage({ params }: Props) {
       "@type": "LocalBusiness",
       "@id": "https://vastuvistainteriors.com/#business",
       name: "Vastu Vista Interiors",
-      telephone: "+919038127376",
+      telephone: "+916290415915",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
         addressLocality: "Kolkata",
         addressRegion: "West Bengal",
+        postalCode: "700039",
         addressCountry: "IN",
       },
     },
@@ -124,7 +126,7 @@ export default async function ProductPage({ params }: Props) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={`https://wa.me/919038127376?text=${encodeURIComponent(`Hi Vastu Vista Interiors! I'm interested in ${product.name} in Kolkata. Please share details and pricing.`)}`}
+                href={`https://wa.me/916290415915?text=${encodeURIComponent(`Hi Vastu Vista Interiors! I'm interested in ${product.name} in Kolkata. Please share details and pricing.`)}`}
                 target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2.5 bg-[#25D366] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#1ebe5c] transition-all text-sm shadow-xl shadow-[#25D366]/25"
               >
@@ -134,7 +136,7 @@ export default async function ProductPage({ params }: Props) {
                 </svg>
                 WhatsApp for Free Quote
               </a>
-              <a href="tel:+919038127376"
+              <a href="tel:+916290415915"
                 className="flex items-center gap-2 text-white font-semibold px-8 py-4 rounded-full border border-white/35 hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all text-sm">
                 Call +91 90381 27376
               </a>
