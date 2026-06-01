@@ -2,9 +2,26 @@ import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
 
 export const metadata: Metadata = {
-  title: "About Us | Best Interior Designers in Kolkata",
+  title: "Vastu Vista Interiors — Interior Designers in Kolkata Since 2014",
   description:
     "Learn about Vastu Vista Interiors — the best interior decoration company in Kolkata. Our story, design philosophy, and commitment to transforming spaces across Kolkata since 2014.",
+  alternates: {
+    canonical: "https://vastuvistainteriors.com/about/",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Vastu Vista Interiors — Interior Design Company Kolkata",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+  },
 };
 
 const values = [
@@ -103,6 +120,7 @@ export default function AboutPage() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-20"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/80 to-transparent" />
         </div>

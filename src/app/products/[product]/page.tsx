@@ -26,7 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: product.metaTitle,
       description: product.metaDesc,
-      images: [{ url: product.image, alt: product.name }],
+      images: [{ url: product.image, alt: product.name, width: 800, height: 600 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [product.image],
     },
   };
 }
@@ -79,26 +83,12 @@ export default async function ProductPage({ params }: Props) {
     },
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: product.features.map((feature) => ({
-      "@type": "Question",
-      name: `Does your ${product.name} service include ${feature.toLowerCase().replace(/[?.]/g, "")}?`,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Yes — ${feature} is included in our ${product.name} service in Kolkata. Contact Vastu Vista Interiors on +91 90381 27376 for details and a free quote.`,
-      },
-    })),
-  };
-
   const jsonLd = serviceSchema;
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* ─── HERO ── */}
       <section className="relative min-h-[80vh] flex flex-col justify-end overflow-hidden bg-[#111111]">
@@ -107,6 +97,7 @@ export default async function ProductPage({ params }: Props) {
             src={product.image}
             alt={`${product.name} in Kolkata`}
             className="w-full h-full object-cover object-center"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/15" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

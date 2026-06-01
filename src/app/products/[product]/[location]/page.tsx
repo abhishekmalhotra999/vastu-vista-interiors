@@ -25,19 +25,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const location = locations.find((l) => l.slug === locationSlug);
   if (!product || !location) return {};
 
-  const title = `${product.name} in ${location.name}, Kolkata | Vastu Vista Interiors`;
-  const description = `Looking for ${product.name} in ${location.name}, Kolkata? Vastu Vista Interiors provides expert ${product.name.toLowerCase()} services to homes and businesses in ${location.name}. ${product.shortDesc}. Get a free quote today.`;
+  const title = `${product.name} in ${location.name} | Vastu Vista Interiors`;
+  const description = `Looking for ${product.name} in ${location.name}, Kolkata? Vastu Vista Interiors provides expert ${product.name.toLowerCase()} services in ${location.name}. ${product.shortDesc}. Call for a free quote.`;
+
+  // Cap description at 155 characters
+  const descTruncated = description.length > 155 ? description.slice(0, 152) + "..." : description;
 
   return {
     title,
-    description,
+    description: descTruncated,
     alternates: {
       canonical: `https://vastuvistainteriors.com/products/${product.slug}/${location.slug}/`,
     },
     openGraph: {
       title,
-      description,
-      images: [{ url: product.image, alt: `${product.name} in ${location.name} Kolkata` }],
+      description: descTruncated,
+      images: [{ url: product.image, alt: `${product.name} in ${location.name} Kolkata`, width: 800, height: 600 }],
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      images: [product.image],
     },
   };
 }
@@ -115,6 +122,7 @@ export default async function ProductLocationPage({ params }: Props) {
             src={product.image}
             alt={`${product.name} in ${location.name} Kolkata`}
             className="w-full h-full object-cover object-center"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/15" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

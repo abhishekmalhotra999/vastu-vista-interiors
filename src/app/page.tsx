@@ -12,6 +12,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://vastuvistainteriors.com/",
   },
+  openGraph: {
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Best interior designer in Kolkata — Vastu Vista Interiors",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+  },
 };
 
 const stats = [
@@ -125,43 +139,19 @@ const marqueeItems = [
   "Home Renovation", "TV Unit Design", "Wall Panel Decoration",
 ];
 
-const localBusinessSchema = {
+const websiteSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://vastuvistainteriors.com/#business",
+  "@type": "WebSite",
+  "@id": "https://vastuvistainteriors.com/#website",
   name: "Vastu Vista Interiors",
-  description:
-    "Vastu Vista Interiors is the best interior designer in Kolkata offering modular kitchen design, false ceiling, bedroom, living room, office and commercial interior design services across 20+ Kolkata locations.",
   url: "https://vastuvistainteriors.com",
-  telephone: "+919038127376",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Kolkata",
-    addressRegion: "West Bengal",
-    postalCode: "700001",
-    addressCountry: "IN",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 22.5726,
-    longitude: 88.3639,
-  },
-  image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-  priceRange: "₹₹",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "10:00",
-      closes: "20:00",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://vastuvistainteriors.com/products/?q={search_term_string}",
     },
-  ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "500",
-    bestRating: "5",
-    worstRating: "1",
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -207,7 +197,7 @@ const reviewSchema = {
 export default function HomePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
 
@@ -218,6 +208,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=90"
             alt="Premium interior design by Vastu Vista Interiors Kolkata"
             className="w-full h-full object-cover object-center"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />

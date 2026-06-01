@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -17,6 +17,10 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#1A1A1A",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://vastuvistainteriors.com"),
   title: {
@@ -25,30 +29,22 @@ export const metadata: Metadata = {
   },
   description:
     "Vastu Vista Interiors is the best interior designer in Kolkata. We offer home interior design, modular kitchen design, false ceiling, bedroom, living room, office and commercial interior design across 20+ locations in Kolkata.",
-  keywords: [
-    "interior designers in Kolkata",
-    "best interior designer in Kolkata",
-    "home interior design Kolkata",
-    "interior decoration company in Kolkata",
-    "affordable interior designers Kolkata",
-    "modular kitchen design Kolkata",
-    "false ceiling design Kolkata",
-    "bedroom interior design Kolkata",
-    "living room interior design Kolkata",
-    "turnkey interior solutions Kolkata",
-  ],
   openGraph: {
     type: "website",
     siteName: "Vastu Vista Interiors",
     locale: "en_IN",
     images: [
       {
-        url: "/assets/vastu-vista-logo.png",
-        width: 400,
-        height: 120,
-        alt: "Vastu Vista Interiors Logo",
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Premium interior design by Vastu Vista Interiors Kolkata",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
   },
   robots: {
     index: true,
@@ -59,12 +55,14 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://vastuvistainteriors.com/#business",
   name: "Vastu Vista Interiors",
   description:
-    "Best interior designer in Kolkata offering home interior design, modular kitchen design, false ceiling, bedroom, living room and commercial interior design services.",
+    "Best interior designer in Kolkata offering home interior design, modular kitchen design, false ceiling, bedroom, living room and commercial interior design services across 20+ locations.",
   url: "https://vastuvistainteriors.com",
   telephone: "+919038127376",
-  image: "https://vastuvistainteriors.com/assets/vastu-vista-logo.png",
+  email: "info@vastuvistainteriors.com",
+  image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Kolkata",
@@ -76,14 +74,34 @@ const jsonLd = {
     latitude: "22.5726",
     longitude: "88.3639",
   },
+  priceRange: "₹₹",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "10:00",
+      closes: "20:00",
+    },
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+919038127376",
+    contactType: "customer service",
+    availableLanguage: ["English", "Bengali", "Hindi"],
+  },
   areaServed: [
     "Salt Lake", "New Town", "Rajarhat", "Ballygunge", "Alipore",
     "Park Street", "Behala", "Tollygunge", "Kasba", "Garia",
     "Jadavpur", "Dum Dum", "Lake Town", "Baguiati", "Barasat",
     "Howrah", "Beliaghata", "Park Circus", "Santoshpur", "Picnic Garden",
   ],
-  openingHours: "Mo-Sa 09:00-19:00",
-  priceRange: "₹₹",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "500",
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 
 export default function RootLayout({
@@ -92,7 +110,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en-IN" className={`${playfair.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"

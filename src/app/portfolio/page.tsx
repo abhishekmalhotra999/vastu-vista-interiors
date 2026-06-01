@@ -2,9 +2,26 @@ import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
 
 export const metadata: Metadata = {
-  title: "Interior Design Portfolio | Vastu Vista Interiors Kolkata",
+  title: "Interior Design Portfolio Kolkata | Vastu Vista Interiors",
   description:
     "View the portfolio of Vastu Vista Interiors — Kolkata's best interior design company. Gallery of residential and commercial interior projects across Kolkata.",
+  alternates: {
+    canonical: "https://vastuvistainteriors.com/portfolio/",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Interior Design Portfolio — Vastu Vista Interiors Kolkata",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+  },
 };
 
 const galleryImages = [
@@ -82,9 +99,20 @@ const galleryImages = [
   },
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
+    { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://vastuvistainteriors.com/portfolio/" },
+  ],
+};
+
 export default function PortfolioPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       {/* ─── HERO ── */}
       <section className="relative bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0">
@@ -93,6 +121,7 @@ export default function PortfolioPage() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-25"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/85 to-[#1A1A1A]/30" />
         </div>

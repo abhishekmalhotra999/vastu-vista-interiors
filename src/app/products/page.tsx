@@ -4,9 +4,26 @@ import { products } from "@/data/products";
 import ContactCTA from "@/components/ContactCTA";
 
 export const metadata: Metadata = {
-  title: "All Interior Design Products in Kolkata | Vastu Vista Interiors",
+  title: "Interior Design Services in Kolkata | Vastu Vista Interiors",
   description:
-    "Browse all 20 interior design products offered by Vastu Vista Interiors in Kolkata — modular kitchen, false ceiling, bedroom, living room, office, restaurant and more.",
+    "Browse all 20 interior design services offered by Vastu Vista Interiors in Kolkata — modular kitchen, false ceiling, bedroom, living room, office, restaurant and more.",
+  alternates: {
+    canonical: "https://vastuvistainteriors.com/products/",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Interior Design Services in Kolkata — Vastu Vista Interiors",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&h=630&q=80"],
+  },
 };
 
 const categories = [
@@ -39,6 +56,7 @@ export default function ServicesPage() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-20"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/80 to-transparent" />
         </div>

@@ -46,7 +46,7 @@ export const products: Product[] = [
       "Moisture-resistant solutions for bathrooms",
       "Quick installation with minimal disruption",
     ],
-    metaTitle: "False Ceiling Design & Installation in Kolkata | Vastu Vista Interiors",
+    metaTitle: "False Ceiling Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Premium false ceiling design and installation in Kolkata. Gypsum, POP, tray and LED cove ceilings by expert craftsmen. Contact Vastu Vista Interiors.",
     image:
@@ -67,7 +67,7 @@ export const products: Product[] = [
       "Ideal for humid areas",
       "Cost-effective ceiling solution",
     ],
-    metaTitle: "PVC Ceiling Panels Installation in Kolkata | Vastu Vista Interiors",
+    metaTitle: "PVC Ceiling Panels in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Affordable PVC ceiling panel installation in Kolkata. Waterproof, durable, and stylish ceiling solutions for homes and offices. Call Vastu Vista Interiors.",
     image:
@@ -277,7 +277,7 @@ export const products: Product[] = [
       "False ceiling and flooring",
       "Biophilic and décor elements",
     ],
-    metaTitle: "Reception Area Interior Design in Kolkata | Vastu Vista Interiors",
+    metaTitle: "Reception Area Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Impressive reception area design in Kolkata for offices, hotels, and clinics. Custom desks, brand walls, and professional interiors by Vastu Vista Interiors.",
     image:

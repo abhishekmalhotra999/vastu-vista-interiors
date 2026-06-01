@@ -2,9 +2,26 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Vastu Vista Interiors Kolkata",
+  title: "Contact Interior Designers in Kolkata | Vastu Vista Interiors",
   description:
     "Contact Vastu Vista Interiors — the best interior designer in Kolkata. Call, WhatsApp, or fill out the form for a free consultation. We serve 20+ locations across Kolkata.",
+  alternates: {
+    canonical: "https://vastuvistainteriors.com/contact/",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Contact Vastu Vista Interiors — Interior Designers Kolkata",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&h=630&q=80"],
+  },
 };
 
 const contactDetails = [
@@ -23,46 +40,10 @@ const breadcrumbSchema = {
   ],
 };
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://vastuvistainteriors.com/#business",
-  name: "Vastu Vista Interiors",
-  url: "https://vastuvistainteriors.com",
-  telephone: "+919038127376",
-  email: "info@vastuvistainteriors.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Kolkata",
-    addressRegion: "West Bengal",
-    addressCountry: "IN",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 22.5726,
-    longitude: 88.3639,
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "10:00",
-      closes: "20:00",
-    },
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+919038127376",
-    contactType: "customer service",
-    availableLanguage: ["English", "Bengali", "Hindi"],
-  },
-};
-
 export default function ContactPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
 
       {/* ─── HERO ── */}
       <section className="relative bg-[#1A1A1A] overflow-hidden">
@@ -72,6 +53,7 @@ export default function ContactPage() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-20"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/80 to-transparent" />
         </div>
