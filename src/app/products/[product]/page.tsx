@@ -4,6 +4,14 @@ import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { locations } from "@/data/locations";
 import ContactCTA from "@/components/ContactCTA";
+import {
+  BASE_URL,
+  SITE_NAME,
+  asAbsoluteUrl,
+  breadcrumbSchema,
+  businessAddress,
+  truncateDescription,
+} from "@/data/seo";
 
 interface Props {
   params: Promise<{ product: string }>;
@@ -17,20 +25,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product: productSlug } = await params;
   const product = products.find((p) => p.slug === productSlug);
   if (!product) return {};
+  const canonicalUrl = `${BASE_URL}/products/${product.slug}/`;
+  const description = truncateDescription(
+    `${product.metaDesc} Available across Kolkata with free consultation from ${SITE_NAME}.`
+  );
+  const image = asAbsoluteUrl(product.image);
+
   return {
-    title: product.metaTitle,
-    description: product.metaDesc,
+    title: { absolute: product.metaTitle },
+    description,
     alternates: {
-      canonical: `https://vastuvistainteriors.com/products/${product.slug}/`,
+      canonical: canonicalUrl,
     },
     openGraph: {
+      type: "website",
+      url: canonicalUrl,
       title: product.metaTitle,
-      description: product.metaDesc,
-      images: [{ url: product.image, alt: product.name, width: 800, height: 600 }],
+      description,
+      images: [{ url: image, alt: `${product.name} in Kolkata`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      images: [product.image],
+      title: product.metaTitle,
+      description,
+      images: [image],
     },
   };
 }
@@ -42,52 +60,46 @@ export default async function ProductPage({ params }: Props) {
 
   const relatedProducts = products.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, 4);
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
-      { "@type": "ListItem", position: 2, name: "Products", item: "https://vastuvistainteriors.com/products/" },
-      { "@type": "ListItem", position: 3, name: product.name, item: `https://vastuvistainteriors.com/products/${product.slug}/` },
-    ],
-  };
+  const canonicalUrl = `${BASE_URL}/products/${product.slug}/`;
+  const productBreadcrumbSchema = breadcrumbSchema([
+    { name: "Home", url: `${BASE_URL}/` },
+    { name: "Products", url: `${BASE_URL}/products/` },
+    { name: product.name, url: canonicalUrl },
+  ]);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `https://vastuvistainteriors.com/products/${product.slug}/#service`,
+    "@id": `${canonicalUrl}#service`,
     name: product.name,
+    serviceType: product.name,
+    category: product.category,
+    url: canonicalUrl,
     description: product.fullDesc,
     provider: {
-      "@type": "LocalBusiness",
-      "@id": "https://vastuvistainteriors.com/#business",
-      name: "Vastu Vista Interiors",
+      "@type": "HomeAndConstructionBusiness",
+      "@id": `${BASE_URL}/#business`,
+      name: SITE_NAME,
       telephone: "+916290415915",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
-        addressLocality: "Kolkata",
-        addressRegion: "West Bengal",
-        postalCode: "700039",
-        addressCountry: "IN",
-      },
+      address: businessAddress,
     },
     areaServed: { "@type": "City", name: "Kolkata" },
-    image: product.image,
+    image: asAbsoluteUrl(product.image),
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       areaServed: "Kolkata",
+      url: canonicalUrl,
       seller: {
-        "@type": "LocalBusiness",
-        "@id": "https://vastuvistainteriors.com/#business",
+        "@type": "HomeAndConstructionBusiness",
+        "@id": `${BASE_URL}/#business`,
       },
     },
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productBreadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* ─── HERO ── */}

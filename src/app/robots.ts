@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { BASE_URL } from "@/data/seo";
 
 export const dynamic = "force-static";
 
@@ -11,7 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [],
       },
     ],
-    sitemap: "https://vastuvistainteriors.com/sitemap.xml",
-    host: "https://vastuvistainteriors.com",
+    sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

@@ -1,26 +1,35 @@
 import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
 import { absoluteAsset, siteImages } from "@/data/site-images";
+import { BASE_URL, SITE_NAME, breadcrumbSchema, businessAddress } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Vastu Vista Interiors — Interior Designers in Kolkata Since 2014",
+  title: { absolute: `About ${SITE_NAME} | Interior Designers in Kolkata Since 2014` },
   description:
-    "Learn about Vastu Vista Interiors — the best interior decoration company in Kolkata. Our story, design philosophy, and commitment to transforming spaces across Kolkata since 2014.",
+    "Vastu Vista Interiors — Kolkata interior design company since 2014. 500+ projects, 20+ locations. Modular kitchens, false ceilings, offices & home renovation.",
   alternates: {
-    canonical: "https://vastuvistainteriors.com/about/",
+    canonical: `${BASE_URL}/about/`,
   },
   openGraph: {
+    type: "website",
+    url: `${BASE_URL}/about/`,
+    title: `About ${SITE_NAME} | Interior Designers in Kolkata Since 2014`,
+    description:
+      "Vastu Vista Interiors: 10+ years transforming Kolkata homes, offices and commercial spaces. 500+ projects, 20+ locations served.",
     images: [
       {
         url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg"),
         width: 1200,
         height: 630,
-        alt: "Vastu Vista Interiors — Interior Design Company Kolkata",
+        alt: "Vastu Vista Interiors — Interior Design Company Kolkata Since 2014",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    title: `About ${SITE_NAME} | Interior Designers in Kolkata Since 2014`,
+    description:
+      "Kolkata interior designers since 2014. 500+ completed projects across homes, offices & commercial spaces in 20+ Kolkata locations.",
     images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg")],
   },
 };
@@ -58,41 +67,44 @@ const values = [
   },
 ];
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
-    { "@type": "ListItem", position: 2, name: "About Us", item: "https://vastuvistainteriors.com/about/" },
-  ],
-};
+const aboutBreadcrumbSchema = breadcrumbSchema([
+  { name: "Home", url: `${BASE_URL}/` },
+  { name: "About Us", url: `${BASE_URL}/about/` },
+]);
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://vastuvistainteriors.com/#organization",
-  name: "Vastu Vista Interiors",
-  url: "https://vastuvistainteriors.com",
+  "@id": `${BASE_URL}/#organization`,
+  name: SITE_NAME,
+  url: BASE_URL,
   telephone: "+916290415915",
+  email: "info@vastuvistainteriors.com",
+  logo: `${BASE_URL}/assets/vastu-vista-logo.png`,
+  image: absoluteAsset(siteImages.aboutHero),
   foundingDate: "2014",
   description:
     "Vastu Vista Interiors is a leading interior design company in Kolkata with over 10 years of experience transforming homes, offices, and commercial spaces.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
-    addressLocality: "Kolkata",
-    addressRegion: "West Bengal",
-    postalCode: "700039",
-    addressCountry: "IN",
-  },
+  address: businessAddress,
   areaServed: { "@type": "City", name: "Kolkata" },
+};
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": `${BASE_URL}/about/#webpage`,
+  url: `${BASE_URL}/about/`,
+  name: `About ${SITE_NAME}`,
+  isPartOf: { "@id": `${BASE_URL}/#website` },
+  about: { "@id": `${BASE_URL}/#business` },
 };
 
 export default function AboutPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutBreadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }} />
 
       {/* ─── HERO ── */}
       <section className="relative bg-[#1A1A1A] overflow-hidden">

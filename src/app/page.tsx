@@ -5,15 +5,21 @@ import ContactCTA from "@/components/ContactCTA";
 import { products } from "@/data/products";
 import { locations } from "@/data/locations";
 import { absoluteAsset, homepagePortfolioImages, siteImages } from "@/data/site-images";
+import { BASE_URL, SITE_NAME } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Best Interior Designer in Kolkata | Vastu Vista Interiors",
+  title: { absolute: `Best Interior Designer in Kolkata | ${SITE_NAME}` },
   description:
-    "Vastu Vista Interiors — the best interior designer in Kolkata. Expert home interior design, modular kitchen design, false ceiling, bedroom, living room, office & commercial interior design across Kolkata.",
+    "Vastu Vista Interiors — top interior designers in Kolkata for modular kitchens, false ceilings, wardrobes, bedrooms, offices & home renovation. Free consultation.",
   alternates: {
-    canonical: "https://vastuvistainteriors.com/",
+    canonical: `${BASE_URL}/`,
   },
   openGraph: {
+    type: "website",
+    url: `${BASE_URL}/`,
+    title: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
+    description:
+      "Top interior design company in Kolkata — modular kitchens, false ceilings, wardrobes, office & home renovation. 500+ projects. Free consultation.",
     images: [
       {
         url: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
@@ -25,6 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
+    description:
+      "Top interior designers in Kolkata. Modular kitchens, false ceilings, wardrobes & home renovation. 500+ projects delivered. Free consultation.",
     images: [absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg")],
   },
 };
@@ -134,14 +143,14 @@ const marqueeItems = [
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://vastuvistainteriors.com/#website",
-  name: "Vastu Vista Interiors",
-  url: "https://vastuvistainteriors.com",
+  "@id": `${BASE_URL}/#website`,
+  name: SITE_NAME,
+  url: BASE_URL,
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://vastuvistainteriors.com/products/?q={search_term_string}",
+      urlTemplate: `${BASE_URL}/products/?q={search_term_string}`,
     },
     "query-input": "required name=search_term_string",
   },
@@ -173,17 +182,43 @@ const reviewSchema = {
         "@type": "Rating",
         ratingValue: String(t.rating),
         bestRating: "5",
+        worstRating: "1",
       },
       author: {
         "@type": "Person",
         name: t.name,
+        homeLocation: {
+          "@type": "Place",
+          name: `${t.location}, Kolkata`,
+        },
       },
+      datePublished: "2025-01-01",
       reviewBody: t.text,
       itemReviewed: {
-        "@id": "https://vastuvistainteriors.com/#business",
+        "@type": "HomeAndConstructionBusiness",
+        "@id": `${BASE_URL}/#business`,
+        name: SITE_NAME,
       },
     },
   })),
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${BASE_URL}/#webpage`,
+  url: `${BASE_URL}/`,
+  name: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
+  description:
+    "Vastu Vista Interiors — top interior designers in Kolkata for modular kitchens, false ceilings, wardrobes, bedrooms, offices & home renovation. Free consultation.",
+  isPartOf: { "@id": `${BASE_URL}/#website` },
+  about: { "@id": `${BASE_URL}/#business` },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/` },
+    ],
+  },
 };
 
 export default function HomePage() {
@@ -192,6 +227,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
 
       {/* ─── HERO ────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-[#111111]">

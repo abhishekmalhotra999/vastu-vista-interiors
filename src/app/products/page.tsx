@@ -3,15 +3,21 @@ import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import ContactCTA from "@/components/ContactCTA";
 import { absoluteAsset, siteImages } from "@/data/site-images";
+import { BASE_URL, SITE_NAME, breadcrumbSchema } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Interior Design Services in Kolkata | Vastu Vista Interiors",
+  title: { absolute: `Interior Design Services in Kolkata | ${SITE_NAME}` },
   description:
-    "Browse all 20 interior design services offered by Vastu Vista Interiors in Kolkata — modular kitchen, false ceiling, bedroom, living room, office, restaurant and more.",
+    "Explore 20 interior design services in Kolkata: modular kitchen, false ceiling, wardrobes, bedroom, living room, office, restaurant, café & home renovation.",
   alternates: {
-    canonical: "https://vastuvistainteriors.com/products/",
+    canonical: `${BASE_URL}/products/`,
   },
   openGraph: {
+    type: "website",
+    url: `${BASE_URL}/products/`,
+    title: `Interior Design Services in Kolkata | ${SITE_NAME}`,
+    description:
+      "20 interior design services across Kolkata — residential, commercial, flooring, ceiling & renovation by Vastu Vista Interiors.",
     images: [
       {
         url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg"),
@@ -23,6 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: `Interior Design Services in Kolkata | ${SITE_NAME}`,
+    description:
+      "20 interior design services in Kolkata: modular kitchen, false ceiling, wardrobe, bedroom, office & renovation by Vastu Vista Interiors.",
     images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg")],
   },
 };
@@ -35,19 +44,40 @@ const categories = [
   { key: "renovation", label: "Renovation" },
 ];
 
-const breadcrumbSchema = {
+const productsBreadcrumbSchema = breadcrumbSchema([
+  { name: "Home", url: `${BASE_URL}/` },
+  { name: "Products", url: `${BASE_URL}/products/` },
+]);
+
+const itemListSchema = {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
-    { "@type": "ListItem", position: 2, name: "Products", item: "https://vastuvistainteriors.com/products/" },
-  ],
+  "@type": "ItemList",
+  "@id": `${BASE_URL}/products/#servicelist`,
+  name: "Interior Design Services in Kolkata",
+  description: "20 professional interior design services for homes, offices and commercial spaces across Kolkata by Vastu Vista Interiors.",
+  url: `${BASE_URL}/products/`,
+  numberOfItems: products.length,
+  itemListElement: products.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      "@id": `${BASE_URL}/products/${product.slug}/#service`,
+      name: product.name,
+      description: product.shortDesc,
+      url: `${BASE_URL}/products/${product.slug}/`,
+      image: product.image,
+      provider: { "@id": `${BASE_URL}/#business` },
+      areaServed: { "@type": "City", name: "Kolkata" },
+    },
+  })),
 };
 
 export default function ServicesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productsBreadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
 
       {/* ─── HERO ── */}
       <section className="relative bg-[#1A1A1A] overflow-hidden">

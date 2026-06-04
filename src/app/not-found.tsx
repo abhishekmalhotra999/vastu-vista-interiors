@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Page Not Found | Vastu Vista Interiors",
+  title: { absolute: "Page Not Found | Vastu Vista Interiors" },
+  description: "The requested Vastu Vista Interiors page could not be found. Return to our Kolkata interior design services or product pages.",
   robots: { index: false, follow: false },
 };
 

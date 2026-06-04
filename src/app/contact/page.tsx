@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import { absoluteAsset, siteImages } from "@/data/site-images";
+import { BASE_URL, SITE_NAME, breadcrumbSchema, businessAddress } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Contact Interior Designers in Kolkata | Vastu Vista Interiors",
+  title: { absolute: `Contact Interior Designers in Kolkata | ${SITE_NAME}` },
   description:
-    "Contact Vastu Vista Interiors — the best interior designer in Kolkata. Call, WhatsApp, or fill out the form for a free consultation. We serve 20+ locations across Kolkata.",
+    "Contact Vastu Vista Interiors for a free interior design consultation in Kolkata. WhatsApp or call for modular kitchen, false ceiling, wardrobe & renovation services.",
   alternates: {
-    canonical: "https://vastuvistainteriors.com/contact/",
+    canonical: `${BASE_URL}/contact/`,
   },
   openGraph: {
+    type: "website",
+    url: `${BASE_URL}/contact/`,
+    title: `Contact Interior Designers in Kolkata | ${SITE_NAME}`,
+    description:
+      "Get a free site visit & consultation from Vastu Vista Interiors. Serving 20+ locations across Kolkata for home, office & commercial interior design.",
     images: [
       {
         url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg"),
@@ -21,6 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: `Contact Interior Designers in Kolkata | ${SITE_NAME}`,
+    description:
+      "Free consultation for interior design, renovation, modular kitchen & false ceiling in Kolkata. Call or WhatsApp Vastu Vista Interiors.",
     images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg")],
   },
 };
@@ -32,19 +41,34 @@ const contactDetails = [
   { label: "Address", value: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala, Kolkata 700039", href: null },
 ];
 
-const breadcrumbSchema = {
+const contactBreadcrumbSchema = breadcrumbSchema([
+  { name: "Home", url: `${BASE_URL}/` },
+  { name: "Contact", url: `${BASE_URL}/contact/` },
+]);
+
+const contactPageSchema = {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
-    { "@type": "ListItem", position: 2, name: "Contact", item: "https://vastuvistainteriors.com/contact/" },
-  ],
+  "@type": "ContactPage",
+  "@id": `${BASE_URL}/contact/#webpage`,
+  url: `${BASE_URL}/contact/`,
+  name: `Contact ${SITE_NAME}`,
+  isPartOf: { "@id": `${BASE_URL}/#website` },
+  about: { "@id": `${BASE_URL}/#business` },
+  mainEntity: {
+    "@type": "HomeAndConstructionBusiness",
+    "@id": `${BASE_URL}/#business`,
+    name: SITE_NAME,
+    telephone: "+916290415915",
+    email: "info@vastuvistainteriors.com",
+    address: businessAddress,
+  },
 };
 
 export default function ContactPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactBreadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }} />
 
       {/* ─── HERO ── */}
       <section className="relative bg-[#1A1A1A] overflow-hidden">

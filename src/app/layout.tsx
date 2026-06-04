@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
-import { absoluteAsset } from "@/data/site-images";
+import { BASE_URL, DEFAULT_OG_IMAGE, localBusinessSchema, SITE_NAME } from "@/data/seo";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -23,88 +23,62 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vastuvistainteriors.com"),
+  metadataBase: new URL(BASE_URL),
+  applicationName: SITE_NAME,
   title: {
-    default: "Best Interior Designer in Kolkata | Vastu Vista Interiors",
-    template: "%s | Vastu Vista Interiors",
+    default: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
+    template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Vastu Vista Interiors is the best interior designer in Kolkata. We offer home interior design, modular kitchen design, false ceiling, bedroom, living room, office and commercial interior design across 20+ locations in Kolkata.",
+    "Vastu Vista Interiors — top interior design company in Kolkata for modular kitchens, false ceilings, wardrobes, offices, restaurants & full home renovation. Free consultation.",
+  alternates: {
+    canonical: BASE_URL,
+  },
+  authors: [{ name: SITE_NAME, url: BASE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   openGraph: {
     type: "website",
-    siteName: "Vastu Vista Interiors",
+    siteName: SITE_NAME,
     locale: "en_IN",
+    url: BASE_URL,
+    title: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
+    description:
+      "Top interior design company in Kolkata. Modular kitchens, false ceilings, wardrobes, offices & home renovation. 500+ projects, 20+ locations.",
     images: [
       {
-        url: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Premium interior design by Vastu Vista Interiors Kolkata",
+        alt: "Premium interior design by Vastu Vista Interiors in Kolkata",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: [absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg")],
+    title: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
+    description:
+      "Top interior designers in Kolkata. Modular kitchens, false ceilings, wardrobes & home renovation. Free consultation available.",
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
-  },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://vastuvistainteriors.com/#business",
-  name: "Vastu Vista Interiors",
-  description:
-    "Best interior designer in Kolkata offering home interior design, modular kitchen design, false ceiling, bedroom, living room and commercial interior design services across 20+ locations.",
-  url: "https://vastuvistainteriors.com",
-  telephone: "+916290415915",
-  email: "info@vastuvistainteriors.com",
-  image: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
-    addressLocality: "Kolkata",
-    addressRegion: "West Bengal",
-    postalCode: "700039",
-    addressCountry: "IN",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "22.5726",
-    longitude: "88.3639",
-  },
-  priceRange: "₹₹",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "10:00",
-      closes: "20:00",
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+916290415915",
-    contactType: "customer service",
-    availableLanguage: ["English", "Bengali", "Hindi"],
   },
-  areaServed: [
-    "Salt Lake", "New Town", "Rajarhat", "Ballygunge", "Alipore",
-    "Park Street", "Behala", "Tollygunge", "Kasba", "Garia",
-    "Jadavpur", "Dum Dum", "Lake Town", "Baguiati", "Barasat",
-    "Howrah", "Beliaghata", "Park Circus", "Santoshpur", "Picnic Garden",
-  ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "500",
-    bestRating: "5",
-    worstRating: "1",
-  },
+  category: "Interior Design",
 };
 
 export default function RootLayout({
@@ -117,7 +91,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
       <body className="font-sans text-[#555555] bg-white antialiased">

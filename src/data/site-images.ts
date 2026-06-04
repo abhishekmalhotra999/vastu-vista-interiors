@@ -1,7 +1,14 @@
 const SITE_ORIGIN = "https://vastuvistainteriors.com";
 
 export const asset = (path: string) => encodeURI(path);
-export const absoluteAsset = (path: string) => `${SITE_ORIGIN}${asset(path)}`;
+export const absoluteAsset = (path: string) => {
+  if (path.startsWith("http")) {
+    return path;
+  }
+
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${SITE_ORIGIN}${encodeURI(decodeURI(normalizedPath))}`;
+};
 
 export const siteImages = {
   homeHero: asset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),

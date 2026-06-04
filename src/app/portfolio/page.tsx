@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
 import { absoluteAsset, portfolioGalleryImages, siteImages } from "@/data/site-images";
+import { BASE_URL, SITE_NAME, breadcrumbSchema } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Interior Design Portfolio Kolkata | Vastu Vista Interiors",
+  title: { absolute: `Interior Design Portfolio in Kolkata | ${SITE_NAME}` },
   description:
-    "View the portfolio of Vastu Vista Interiors — Kolkata's best interior design company. Gallery of residential and commercial interior projects across Kolkata.",
+    "Browse Vastu Vista Interiors portfolio: modular kitchens, false ceilings, wardrobes, TV units, bedrooms & office interiors. 500+ projects across Kolkata.",
   alternates: {
-    canonical: "https://vastuvistainteriors.com/portfolio/",
+    canonical: `${BASE_URL}/portfolio/`,
   },
   openGraph: {
+    type: "website",
+    url: `${BASE_URL}/portfolio/`,
+    title: `Interior Design Portfolio in Kolkata | ${SITE_NAME}`,
+    description:
+      "Explore completed interior design projects by Vastu Vista Interiors — homes, offices & commercial spaces across Kolkata.",
     images: [
       {
         url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg"),
@@ -21,23 +27,53 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: `Interior Design Portfolio in Kolkata | ${SITE_NAME}`,
+    description:
+      "Explore our portfolio of 500+ interior design projects in Kolkata — kitchens, ceilings, wardrobes, bedrooms & offices by Vastu Vista Interiors.",
     images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg")],
   },
 };
 
-const breadcrumbSchema = {
+const portfolioBreadcrumbSchema = breadcrumbSchema([
+  { name: "Home", url: `${BASE_URL}/` },
+  { name: "Portfolio", url: `${BASE_URL}/portfolio/` },
+]);
+
+const imageGallerySchema = {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
-    { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://vastuvistainteriors.com/portfolio/" },
-  ],
+  "@type": "ImageGallery",
+  "@id": `${BASE_URL}/portfolio/#gallery`,
+  name: "Interior Design Portfolio Kolkata",
+  url: `${BASE_URL}/portfolio/`,
+  image: portfolioGalleryImages.map((image) => ({
+    "@type": "ImageObject",
+    contentUrl: absoluteAsset(image.src),
+    name: image.label,
+    description: image.alt,
+    author: { "@id": `${BASE_URL}/#business` },
+  })),
+  publisher: { "@id": `${BASE_URL}/#business` },
+};
+
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${BASE_URL}/portfolio/#webpage`,
+  url: `${BASE_URL}/portfolio/`,
+  name: "Interior Design Portfolio in Kolkata | Vastu Vista Interiors",
+  description:
+    "A curated collection of residential and commercial interior design projects by Vastu Vista Interiors in Kolkata — modular kitchens, false ceilings, wardrobes, bedrooms and offices.",
+  isPartOf: { "@id": `${BASE_URL}/#website` },
+  about: { "@id": `${BASE_URL}/#business` },
+  hasPart: { "@id": `${BASE_URL}/portfolio/#gallery` },
 };
 
 export default function PortfolioPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioBreadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }} />
 
       {/* ─── HERO ── */}
       <section className="relative bg-[#1A1A1A] overflow-hidden">

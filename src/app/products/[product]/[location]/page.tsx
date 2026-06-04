@@ -4,6 +4,14 @@ import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { locations } from "@/data/locations";
 import ContactCTA from "@/components/ContactCTA";
+import {
+  BASE_URL,
+  SITE_NAME,
+  asAbsoluteUrl,
+  breadcrumbSchema,
+  businessAddress,
+  truncateDescription,
+} from "@/data/seo";
 
 interface Props {
   params: Promise<{ product: string; location: string }>;
@@ -25,26 +33,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const location = locations.find((l) => l.slug === locationSlug);
   if (!product || !location) return {};
 
-  const title = `${product.name} in ${location.name} | Vastu Vista Interiors`;
-  const description = `Looking for ${product.name} in ${location.name}, Kolkata? Vastu Vista Interiors provides expert ${product.name.toLowerCase()} services in ${location.name}. ${product.shortDesc}. Call for a free quote.`;
-
-  // Cap description at 155 characters
-  const descTruncated = description.length > 155 ? description.slice(0, 152) + "..." : description;
+  // Dropped ", Kolkata" suffix to keep titles under 65 chars for most products
+  const title = `${product.name} in ${location.name} | ${SITE_NAME}`;
+  const canonicalUrl = `${BASE_URL}/products/${product.slug}/${location.slug}/`;
+  // Keep description ≤155 chars; use shortDesc which is controlled-length
+  const description = truncateDescription(
+    `Expert ${product.name} in ${location.name}, Kolkata. ${product.shortDesc}. Free site visit by ${SITE_NAME}.`
+  );
+  const image = asAbsoluteUrl(product.image);
 
   return {
-    title,
-    description: descTruncated,
+    title: { absolute: title },
+    description,
     alternates: {
-      canonical: `https://vastuvistainteriors.com/products/${product.slug}/${location.slug}/`,
+      canonical: canonicalUrl,
     },
     openGraph: {
+      type: "website",
+      url: canonicalUrl,
       title,
-      description: descTruncated,
-      images: [{ url: product.image, alt: `${product.name} in ${location.name} Kolkata`, width: 800, height: 600 }],
+      description,
+      images: [{ url: image, alt: `${product.name} in ${location.name}, Kolkata`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image" as const,
-      images: [product.image],
+      title,
+      description,
+      images: [image],
     },
   };
 }
@@ -62,56 +77,56 @@ export default async function ProductLocationPage({ params }: Props) {
   const otherLocations = locations.filter((l) => l.slug !== location.slug).slice(0, 8);
   const relatedProducts = products.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, 4);
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://vastuvistainteriors.com/" },
-      { "@type": "ListItem", position: 2, name: "Products", item: "https://vastuvistainteriors.com/products/" },
-      { "@type": "ListItem", position: 3, name: product.name, item: `https://vastuvistainteriors.com/products/${product.slug}/` },
-      { "@type": "ListItem", position: 4, name: location.name, item: `https://vastuvistainteriors.com/products/${product.slug}/${location.slug}/` },
-    ],
-  };
+  const canonicalUrl = `${BASE_URL}/products/${product.slug}/${location.slug}/`;
+  const locationBreadcrumbSchema = breadcrumbSchema([
+    { name: "Home", url: `${BASE_URL}/` },
+    { name: "Products", url: `${BASE_URL}/products/` },
+    { name: product.name, url: `${BASE_URL}/products/${product.slug}/` },
+    { name: `${product.name} in ${location.name}`, url: canonicalUrl },
+  ]);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `https://vastuvistainteriors.com/products/${product.slug}/${location.slug}/#service`,
+    "@id": `${canonicalUrl}#service`,
     name: `${product.name} in ${location.name}`,
-    description: `${product.shortDesc} in ${location.name}, Kolkata.`,
+    serviceType: product.name,
+    category: product.category,
+    url: canonicalUrl,
+    description: `${product.fullDesc} Service available in ${location.name}, ${location.area}.`,
     provider: {
-      "@type": "LocalBusiness",
-      "@id": "https://vastuvistainteriors.com/#business",
-      name: "Vastu Vista Interiors",
+      "@type": "HomeAndConstructionBusiness",
+      "@id": `${BASE_URL}/#business`,
+      name: SITE_NAME,
       telephone: "+916290415915",
+      address: businessAddress,
+    },
+    areaServed: {
+      "@type": "Place",
+      name: `${location.name}, Kolkata`,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",
-        addressLocality: "Kolkata",
+        addressLocality: location.name,
         addressRegion: "West Bengal",
-        postalCode: "700039",
         addressCountry: "IN",
       },
     },
-    areaServed: {
-      "@type": "City",
-      name: location.name,
-    },
-    image: product.image,
+    image: asAbsoluteUrl(product.image),
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
-      areaServed: location.name,
+      areaServed: `${location.name}, Kolkata`,
+      url: canonicalUrl,
       seller: {
-        "@type": "LocalBusiness",
-        "@id": "https://vastuvistainteriors.com/#business",
+        "@type": "HomeAndConstructionBusiness",
+        "@id": `${BASE_URL}/#business`,
       },
     },
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(locationBreadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* ─── HERO ── */}
