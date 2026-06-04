@@ -1,0 +1,141 @@
+const SITE_ORIGIN = "https://vastuvistainteriors.com";
+
+export const asset = (path: string) => encodeURI(path);
+export const absoluteAsset = (path: string) => `${SITE_ORIGIN}${asset(path)}`;
+
+export const siteImages = {
+  homeHero: asset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
+  productHero: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg"),
+  aboutHero: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg"),
+  contactHero: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg"),
+  portfolioHero: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg"),
+
+  ceilingFeature: asset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40.jpeg"),
+  ceilingAlt: asset("/interior-pics/false_ceiling.jpeg"),
+  ceilingLighting: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg"),
+
+  bedroomMain: asset("/new_images/Bed_room_design/WhatsApp Image 2026-06-03 at 11.59.41.jpeg"),
+  bedroomAlt: asset("/new_images/Bed_room_design/WhatsApp Image 2026-05-30 at 10.45.48.jpeg"),
+  bedroomAccent: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.41.jpeg"),
+
+  tvUnitMain: asset("/new_images/TV_unit/WhatsApp Image 2026-06-03 at 11.59.38.jpeg"),
+  tvUnitAlt: asset("/new_images/TV_unit/WhatsApp Image 2026-06-03 at 11.59.36.jpeg"),
+
+  wardrobeMain: asset("/new_images/wardrobes/WhatsApp Image 2026-06-03 at 11.59.42.jpeg"),
+  wardrobeAlt: asset("/new_images/wardrobes/WhatsApp Image 2026-06-03 at 11.59.25.jpeg"),
+
+  bathroomMain: asset("/new_images/Bathroom_renovation/WhatsApp Image 2026-06-03 at 11.59.28.jpeg"),
+  bathroomAlt: asset("/new_images/Bathroom_renovation/WhatsApp Image 2026-06-03 at 11.59.29.jpeg"),
+
+  wallPanelMain: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.42.jpeg"),
+  wallPanelAlt: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.41 (2).jpeg"),
+  featureWallMain: asset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43 (1).jpeg"),
+};
+
+export const homepagePortfolioImages = [
+  {
+    src: siteImages.tvUnitMain,
+    alt: "Custom TV unit and living room feature wall by Vastu Vista Interiors",
+    label: "TV Unit Feature Wall",
+  },
+  {
+    src: siteImages.ceilingFeature,
+    alt: "Modern false ceiling design with layered lighting",
+    label: "False Ceiling Design",
+  },
+  {
+    src: siteImages.bedroomMain,
+    alt: "Elegant bedroom interior with customized storage and ceiling lighting",
+    label: "Bedroom Interior",
+  },
+  {
+    src: siteImages.wardrobeMain,
+    alt: "Customized wardrobe design with built-in storage",
+    label: "Wardrobe Design",
+  },
+  {
+    src: siteImages.wallPanelMain,
+    alt: "Geometric wall panel decoration detail",
+    label: "Wall Panel Detail",
+  },
+  {
+    src: siteImages.bathroomMain,
+    alt: "Bathroom renovation with premium fittings",
+    label: "Bathroom Renovation",
+  },
+];
+
+export const portfolioGalleryImages = [
+  {
+    src: siteImages.tvUnitMain,
+    alt: "Custom TV unit and living room feature wall by Vastu Vista Interiors",
+    label: "Living Room Feature Wall",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.ceilingFeature,
+    alt: "Modern false ceiling design with layered lighting",
+    label: "False Ceiling Design",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.bedroomMain,
+    alt: "Bedroom interior with layered ceiling lighting and custom headboard wall",
+    label: "Bedroom Interior",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.wardrobeMain,
+    alt: "Custom wardrobe installation with loft storage",
+    label: "Wardrobe Design",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.bathroomMain,
+    alt: "Bathroom renovation with premium countertop basin and mirror",
+    label: "Bathroom Renovation",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.wallPanelMain,
+    alt: "Geometric wall panel feature with warm lighting",
+    label: "Wall Panel Feature",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.featureWallMain,
+    alt: "Feature wall and floating display unit in a living room",
+    label: "Feature Wall & Display",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.ceilingLighting,
+    alt: "Warm false ceiling lighting detail in a living room",
+    label: "Ceiling Lighting Detail",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.bedroomAccent,
+    alt: "Bedroom interior with accent wall and wardrobe storage",
+    label: "Bedroom Accent Wall",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.tvUnitAlt,
+    alt: "Modern entertainment wall and TV unit",
+    label: "Entertainment Wall",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.wardrobeAlt,
+    alt: "Built-in wardrobe storage with overhead cabinets",
+    label: "Built-in Wardrobe",
+    location: "Kolkata",
+  },
+  {
+    src: siteImages.bathroomAlt,
+    alt: "Bathroom vanity and shower renovation",
+    label: "Bathroom Vanity",
+    location: "Kolkata",
+  },
+];

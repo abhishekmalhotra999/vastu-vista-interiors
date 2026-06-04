@@ -1,3 +1,5 @@
+import { siteImages } from "@/data/site-images";
+
 export interface Product {
   slug: string;
   name: string;
@@ -49,8 +51,7 @@ export const products: Product[] = [
     metaTitle: "False Ceiling Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Premium false ceiling design and installation in Kolkata. Gypsum, POP, tray and LED cove ceilings by expert craftsmen. Contact Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.ceilingFeature,
     category: "ceiling",
   },
   {
@@ -70,8 +71,7 @@ export const products: Product[] = [
     metaTitle: "PVC Ceiling Panels in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Affordable PVC ceiling panel installation in Kolkata. Waterproof, durable, and stylish ceiling solutions for homes and offices. Call Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.ceilingAlt,
     category: "ceiling",
   },
   {
@@ -91,8 +91,7 @@ export const products: Product[] = [
     metaTitle: "Wallpaper Installation in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Professional wallpaper installation in Kolkata. Hundreds of designs for feature walls and full rooms. Expert installation by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.wallPanelMain,
     category: "residential",
   },
   {
@@ -112,8 +111,7 @@ export const products: Product[] = [
     metaTitle: "Wooden Flooring Installation in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Premium wooden flooring installation in Kolkata. Solid hardwood, engineered wood, and laminate options by Vastu Vista Interiors. Get a free estimate.",
-    image:
-      "https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.pexels.com/photos/11126101/pexels-photo-11126101.jpeg?cs=srgb&dl=pexels-enginakyurt-11126101.jpg&fm=jpg",
     category: "flooring",
   },
   {
@@ -133,8 +131,7 @@ export const products: Product[] = [
     metaTitle: "Vinyl Flooring Installation in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Affordable vinyl flooring installation in Kolkata. Waterproof LVP and LVT for homes and offices. Expert installation by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1615529162924-f8605388461d?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.pexels.com/photos/17679996/pexels-photo-17679996.jpeg?cs=srgb&dl=pexels-declan-17679996.jpg&fm=jpg",
     category: "flooring",
   },
   {
@@ -154,8 +151,7 @@ export const products: Product[] = [
     metaTitle: "Customized Wardrobe Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Custom wardrobe design and installation in Kolkata. Sliding, hinged, and walk-in wardrobes with smart storage solutions by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.wardrobeMain,
     category: "residential",
   },
   {
@@ -175,8 +171,7 @@ export const products: Product[] = [
     metaTitle: "TV Unit Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Custom TV unit and entertainment center design in Kolkata. Modern, stylish, and functional TV walls by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1565538420870-da08ff96a207?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.tvUnitMain,
     category: "residential",
   },
   {
@@ -196,8 +191,7 @@ export const products: Product[] = [
     metaTitle: "Bedroom Interior Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Complete bedroom interior design in Kolkata. Custom beds, wardrobes, false ceilings, and soft furnishings for your perfect sanctuary. Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.bedroomMain,
     category: "residential",
   },
   {
@@ -217,8 +211,7 @@ export const products: Product[] = [
     metaTitle: "Living Room Interior Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Transform your living room with expert interior design in Kolkata. Custom furniture, false ceilings, and décor by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.featureWallMain,
     category: "residential",
   },
   {
@@ -364,8 +357,7 @@ export const products: Product[] = [
     metaTitle: "Wall Panel Decoration in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Stylish wall panel decoration in Kolkata. Fluted wood, 3D PVC, stone, and backlit panels for feature walls by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.wallPanelMain,
     category: "residential",
   },
   {
@@ -385,8 +377,7 @@ export const products: Product[] = [
     metaTitle: "LED Lighting Design in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Professional LED lighting design in Kolkata. Ambient, accent, and task lighting for homes and offices by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.ceilingLighting,
     category: "residential",
   },
   {
@@ -406,8 +397,7 @@ export const products: Product[] = [
     metaTitle: "Space Saving Furniture in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Smart space-saving furniture solutions in Kolkata for compact homes and apartments. Murphy beds, modular storage, and multifunctional designs by Vastu Vista Interiors.",
-    image:
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.wardrobeAlt,
     category: "residential",
   },
   {
@@ -427,8 +417,7 @@ export const products: Product[] = [
     metaTitle: "Home Renovation Services in Kolkata | Vastu Vista Interiors",
     metaDesc:
       "Complete home renovation and interior remodelling in Kolkata. End-to-end project management by Vastu Vista Interiors — from design to handover.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    image: siteImages.bedroomAccent,
     category: "renovation",
   },
 ];

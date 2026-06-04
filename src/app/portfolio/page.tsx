@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
+import { absoluteAsset, portfolioGalleryImages, siteImages } from "@/data/site-images";
 
 export const metadata: Metadata = {
   title: "Interior Design Portfolio Kolkata | Vastu Vista Interiors",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg"),
         width: 1200,
         height: 630,
         alt: "Interior Design Portfolio — Vastu Vista Interiors Kolkata",
@@ -20,84 +21,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+    images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg")],
   },
 };
-
-const galleryImages = [
-  {
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80",
-    alt: "Luxury living room interior design Kolkata",
-    label: "Luxury Living Room",
-    location: "Salt Lake",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=700&q=80",
-    alt: "Modular kitchen design Kolkata",
-    label: "Modular Kitchen",
-    location: "New Town",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=700&q=80",
-    alt: "Bedroom interior design Kolkata",
-    label: "Master Bedroom",
-    location: "Ballygunge",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80",
-    alt: "Office interior decorators Kolkata",
-    label: "Corporate Office",
-    location: "Park Street",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80",
-    alt: "Restaurant interior designer Kolkata",
-    label: "Fine Dining Restaurant",
-    location: "Alipore",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=80",
-    alt: "False ceiling design Kolkata bedroom",
-    label: "False Ceiling Design",
-    location: "Rajarhat",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=700&q=80",
-    alt: "Dining room interior design Kolkata",
-    label: "Dining Room",
-    location: "Tollygunge",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80",
-    alt: "Café interior design Kolkata",
-    label: "Café Interior",
-    location: "Jadavpur",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80",
-    alt: "Wallpaper installation interior design Kolkata",
-    label: "Accent Wall & Wallpaper",
-    location: "Kasba",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?auto=format&fit=crop&w=700&q=80",
-    alt: "Wooden flooring interior Kolkata",
-    label: "Wooden Flooring",
-    location: "Behala",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80",
-    alt: "Wall panel decoration interior Kolkata",
-    label: "Wall Panel Feature",
-    location: "Lake Town",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80",
-    alt: "Reception area design Kolkata office",
-    label: "Office Reception",
-    location: "Howrah",
-  },
-];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -117,7 +43,7 @@ export default function PortfolioPage() {
       <section className="relative bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={galleryImages[0].src}
+            src={siteImages.portfolioHero}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-25"
@@ -156,9 +82,9 @@ export default function PortfolioPage() {
               </div>
             </div>
             <div className="hidden lg:grid grid-cols-2 gap-3">
-              {galleryImages.slice(0, 4).map((img) => (
+              {portfolioGalleryImages.slice(0, 4).map((img) => (
                 <div key={img.label} className="aspect-square overflow-hidden rounded-xl opacity-70">
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover object-center" loading="lazy" />
                 </div>
               ))}
             </div>
@@ -170,7 +96,7 @@ export default function PortfolioPage() {
       <section className="py-16 px-6 sm:px-10 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
-            {galleryImages.map((img, i) => (
+            {portfolioGalleryImages.map((img, i) => (
               <div
                 key={img.label}
                 className={`break-inside-avoid mb-5 relative group overflow-hidden rounded-2xl ${
@@ -180,7 +106,7 @@ export default function PortfolioPage() {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

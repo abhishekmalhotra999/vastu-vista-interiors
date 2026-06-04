@@ -18,7 +18,7 @@ export default function ProductCard({ product, locationSlug }: ProductCardProps)
         <img
           src={product.image}
           alt={`${product.name} in Kolkata`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

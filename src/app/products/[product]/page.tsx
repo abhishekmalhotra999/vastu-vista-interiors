@@ -85,8 +85,6 @@ export default async function ProductPage({ params }: Props) {
     },
   };
 
-  const jsonLd = serviceSchema;
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -225,7 +223,7 @@ export default async function ProductPage({ params }: Props) {
                   className="group bg-white rounded-2xl overflow-hidden border border-[#E5E5E5] hover:shadow-lg transition-shadow duration-300">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img src={rp.image} alt={rp.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <p className="absolute bottom-4 left-4 text-white font-semibold text-sm">{rp.name}</p>

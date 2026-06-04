@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import ContactCTA from "@/components/ContactCTA";
+import { absoluteAsset, siteImages } from "@/data/site-images";
 
 export const metadata: Metadata = {
   title: "Interior Design Services in Kolkata | Vastu Vista Interiors",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg"),
         width: 1200,
         height: 630,
         alt: "Interior Design Services in Kolkata — Vastu Vista Interiors",
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&h=630&q=80"],
+    images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.45.jpeg")],
   },
 };
 
@@ -52,7 +53,7 @@ export default function ServicesPage() {
       <section className="relative bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=80"
+            src={siteImages.productHero}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-20"

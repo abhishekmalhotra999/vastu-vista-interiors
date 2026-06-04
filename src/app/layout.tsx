@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import { absoluteAsset } from "@/data/site-images";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
         width: 1200,
         height: 630,
         alt: "Premium interior design by Vastu Vista Interiors Kolkata",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+    images: [absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg")],
   },
   robots: {
     index: true,
@@ -62,7 +63,7 @@ const jsonLd = {
   url: "https://vastuvistainteriors.com",
   telephone: "+916290415915",
   email: "info@vastuvistainteriors.com",
-  image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+  image: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
   address: {
     "@type": "PostalAddress",
     streetAddress: "19 Vivekananda Park, Amrabati, Naskarhat, Tiljala",

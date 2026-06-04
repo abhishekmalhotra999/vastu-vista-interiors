@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import ContactCTA from "@/components/ContactCTA";
 import { products } from "@/data/products";
 import { locations } from "@/data/locations";
+import { absoluteAsset, homepagePortfolioImages, siteImages } from "@/data/site-images";
 
 export const metadata: Metadata = {
   title: "Best Interior Designer in Kolkata | Vastu Vista Interiors",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
         width: 1200,
         height: 630,
         alt: "Best interior designer in Kolkata — Vastu Vista Interiors",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+    images: [absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg")],
   },
 };
 
@@ -123,15 +124,6 @@ const faqItems = [
   },
 ];
 
-const portfolioImages = [
-  { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80", alt: "Luxury living room interior design Kolkata", label: "Living Room" },
-  { src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80", alt: "Modular kitchen design Kolkata", label: "Modular Kitchen" },
-  { src: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=600&q=80", alt: "Bedroom interior design Kolkata", label: "Master Bedroom" },
-  { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80", alt: "Office interior design Kolkata", label: "Corporate Office" },
-  { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", alt: "Restaurant interior designer Kolkata", label: "Restaurant" },
-  { src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", alt: "False ceiling design Kolkata", label: "False Ceiling" },
-];
-
 const marqueeItems = [
   "Modular Kitchen Design", "False Ceiling Installation", "Bedroom Interior",
   "Living Room Design", "Office Interiors", "Restaurant Design",
@@ -205,7 +197,7 @@ export default function HomePage() {
       <section className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-[#111111]">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=90"
+            src={siteImages.homeHero}
             alt="Premium interior design by Vastu Vista Interiors Kolkata"
             className="w-full h-full object-cover object-center"
             fetchPriority="high"
@@ -406,18 +398,18 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Large featured */}
             <div className="md:col-span-7 relative group overflow-hidden rounded-2xl aspect-[4/3]">
-              <img src={portfolioImages[0].src} alt={portfolioImages[0].alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img src={homepagePortfolioImages[0].src} alt={homepagePortfolioImages[0].alt} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute bottom-6 left-6">
-                <span className="text-white font-bold text-xl leading-none">{portfolioImages[0].label}</span>
+                <span className="text-white font-bold text-xl leading-none">{homepagePortfolioImages[0].label}</span>
                 <p className="text-white/55 text-xs mt-1.5">Vastu Vista Interiors, Kolkata</p>
               </div>
             </div>
             {/* Right column: 2 stacked */}
             <div className="md:col-span-5 grid grid-rows-2 gap-4">
-              {[portfolioImages[1], portfolioImages[2]].map((img) => (
+              {[homepagePortfolioImages[1], homepagePortfolioImages[2]].map((img) => (
                 <div key={img.label} className="relative group overflow-hidden rounded-2xl min-h-[180px]">
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-5">
                     <span className="text-white font-semibold text-sm">{img.label}</span>
@@ -426,9 +418,9 @@ export default function HomePage() {
               ))}
             </div>
             {/* Bottom 3 equal */}
-            {[portfolioImages[3], portfolioImages[4], portfolioImages[5]].map((img) => (
+            {[homepagePortfolioImages[3], homepagePortfolioImages[4], homepagePortfolioImages[5]].map((img) => (
               <div key={img.label} className="md:col-span-4 relative group overflow-hidden rounded-2xl aspect-[4/3]">
-                <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <img src={img.src} alt={img.alt} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <span className="text-white font-semibold text-sm">{img.label}</span>

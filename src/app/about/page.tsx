@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactCTA from "@/components/ContactCTA";
+import { absoluteAsset, siteImages } from "@/data/site-images";
 
 export const metadata: Metadata = {
   title: "Vastu Vista Interiors — Interior Designers in Kolkata Since 2014",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg"),
         width: 1200,
         height: 630,
         alt: "Vastu Vista Interiors — Interior Design Company Kolkata",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80"],
+    images: [absoluteAsset("/interior-pics/WhatsApp Image 2026-05-24 at 10.17.43.jpeg")],
   },
 };
 
@@ -54,27 +55,6 @@ const values = [
     icon: "💡",
     title: "Innovation",
     desc: "We stay ahead of interior design trends while creating timeless spaces that remain beautiful for years.",
-  },
-];
-
-const team = [
-  {
-    name: "Founder & Principal Designer",
-    role: "Lead Design & Strategy",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
-    bio: "With over 10 years of experience, our founder has led 300+ interior projects across Kolkata, from luxury residences to commercial establishments.",
-  },
-  {
-    name: "Head of Residential Design",
-    role: "Home Interiors Specialist",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
-    bio: "Specializing in residential interiors, our design head transforms homes with a keen eye for space optimization and aesthetic balance.",
-  },
-  {
-    name: "Commercial Design Lead",
-    role: "Offices & Hospitality",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
-    bio: "Our commercial lead has designed over 100 office spaces, restaurants, cafés, and retail establishments across Kolkata.",
   },
 ];
 
@@ -118,7 +98,7 @@ export default function AboutPage() {
       <section className="relative bg-[#1A1A1A] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80"
+            src={siteImages.aboutHero}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-20"
@@ -179,7 +159,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-[4/5] overflow-hidden rounded-2xl">
               <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+                src={siteImages.featureWallMain}
                 alt="Interior design craftsmanship — Vastu Vista Interiors Kolkata"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
@@ -230,48 +210,6 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TEAM ── */}
-      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-[#F8F8F8]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row lg:items-end gap-6 mb-16">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="h-px w-10 bg-[#2D2D2D]" />
-                <p className="text-xs uppercase tracking-[0.25em] text-[#8C8C8C]">The People</p>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#2D2D2D] leading-[1.1]">
-                Meet Our Team
-              </h2>
-            </div>
-            <p className="text-[#8C8C8C] text-base leading-relaxed lg:max-w-sm">
-              A passionate team of designers, project managers, and skilled craftsmen — united by
-              a shared love for creating extraordinary interiors.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member) => (
-              <div key={member.name} className="bg-white rounded-2xl overflow-hidden border border-[#E5E5E5]">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-7">
-                  <p className="text-xs uppercase tracking-[0.2em] text-[#8C8C8C] mb-2 font-medium">
-                    {member.role}
-                  </p>
-                  <h3 className="font-bold text-[#2D2D2D] text-lg mb-3">{member.name}</h3>
-                  <p className="text-[#8C8C8C] text-sm leading-relaxed">{member.bio}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
