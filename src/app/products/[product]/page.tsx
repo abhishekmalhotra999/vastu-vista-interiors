@@ -148,7 +148,7 @@ export default async function ProductPage({ params }: Props) {
               </a>
               <a href="tel:+916290415915"
                 className="flex items-center gap-2 text-white font-semibold px-8 py-4 rounded-full border border-white/35 hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all text-sm">
-                Call +91 90381 27376
+                Call +91 62904 15915
               </a>
             </div>
           </div>

@@ -105,13 +105,6 @@ export const localBusinessSchema = {
     areaServed: "IN",
     availableLanguage: ["English", "Bengali", "Hindi"],
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "127",
-    bestRating: "5",
-    worstRating: "1",
-  },
   sameAs: [
     "https://wa.me/916290415915",
   ],

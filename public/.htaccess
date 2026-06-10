@@ -1,0 +1,187 @@
+# ============================================================
+#  Vastu Vista Interiors — Apache .htaccess
+#  SEO-optimised configuration for static Next.js export
+# ============================================================
+
+Options -Indexes
+DirectoryIndex index.html
+
+# ============================================================
+#  1.  HTTPS + www → non-www canonical redirect
+#      BASE_URL = https://vastuvistainteriors.com  (no www)
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # (a) HTTP → HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # (b) www → non-www  (keeps HTTPS)
+  RewriteCond %{HTTPS} on
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# ============================================================
+#  2.  Serve pre-rendered HTML for trailing-slash URLs
+#      trailingSlash:true generates /about/index.html etc.
+#      Ensures /about  → /about/ (301) so canonicals match.
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Skip real files and directories
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Strip trailing slash from non-root requests (Apache will
+  # add it back via DirectorySlash, producing a clean 301)
+  # This handles /about → /about/ → serves about/index.html
+</IfModule>
+
+# ============================================================
+#  3.  Custom 404 page
+# ============================================================
+ErrorDocument 404 /404.html
+
+# ============================================================
+#  4.  Serve WebP automatically when browser supports it
+#      Apache checks: Accept header contains "image/webp"
+#      AND a .webp version of the requested image exists.
+#      Falls back to original JPEG/PNG transparently.
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Only for image requests
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_URI} \.(jpe?g|png)$  [NC]
+
+  # Check the WebP counterpart exists
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}   -f
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME}\.webp  !-f   [OR]
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} \.jpe?g$  [NC]
+
+  # Cleaner: direct map .jpg/.jpeg/.png → .webp
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME}\.webp -f  [NC]
+  RewriteRule ^(.+)\.(jpe?g|png)$ $1.%2.webp [T=image/webp,L]
+</IfModule>
+
+# Correct MIME for WebP
+<IfModule mod_headers.c>
+  <FilesMatch "\.webp$">
+    Header set Content-Type "image/webp"
+    Header append Vary Accept
+  </FilesMatch>
+</IfModule>
+
+# ============================================================
+#  5.  MIME types
+# ============================================================
+<IfModule mod_mime.c>
+  AddType application/javascript          .js .mjs
+  AddType text/css                        .css
+  AddType image/svg+xml                   .svg .svgz
+  AddType image/webp                      .webp
+  AddType image/avif                      .avif
+  AddType application/json               .json
+  AddType application/xml                .xml
+  AddType font/woff2                      .woff2
+  AddType font/woff                       .woff
+</IfModule>
+
+# ============================================================
+#  5.  Gzip compression  (reduces page size ~70%)
+# ============================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE font/woff
+</IfModule>
+
+# ============================================================
+#  6.  Browser caching — aggressive cache for hashed assets,
+#      short cache for HTML so updates show quickly
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — short cache so new builds show immediately
+  ExpiresByType text/html                         "access plus 1 hour"
+
+  # Next.js hashed static assets (_next/static/) — 1 year
+  ExpiresByType application/javascript            "access plus 1 year"
+  ExpiresByType text/css                          "access plus 1 year"
+
+  # Fonts
+  ExpiresByType font/woff2                        "access plus 1 year"
+  ExpiresByType font/woff                         "access plus 1 year"
+
+  # Images
+  ExpiresByType image/jpeg                        "access plus 6 months"
+  ExpiresByType image/png                         "access plus 6 months"
+  ExpiresByType image/webp                        "access plus 6 months"
+  ExpiresByType image/avif                        "access plus 6 months"
+  ExpiresByType image/svg+xml                     "access plus 6 months"
+
+  # Sitemap + robots — short so Google picks up updates fast
+  ExpiresByType application/xml                   "access plus 1 day"
+  ExpiresByType text/plain                        "access plus 1 day"
+</IfModule>
+
+# Cache-Control header for hashed _next/static/ assets
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2|woff)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|gif)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+  # Sitemap and robots — 24 h cache
+  <FilesMatch "(sitemap\.xml|robots\.txt)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
+
+# ============================================================
+#  7.  Security headers  (also improve Core Web Vitals score)
+# ============================================================
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Referrer policy — send full URL to same origin, origin-only to external
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Basic XSS protection header (for older browsers)
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # HSTS — tells browsers to always use HTTPS for 1 year
+  # Enable only AFTER confirming HTTPS works perfectly on your server
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ============================================================
+#  8.  Remove ETags  (avoids duplicate caching issues on CDNs)
+# ============================================================
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None

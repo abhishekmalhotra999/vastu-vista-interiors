@@ -9,6 +9,15 @@ export const dynamic = "force-static";
 // Static launch date — never changes once site goes live
 const STATIC_DATE = new Date("2025-06-01");
 
+/**
+ * Encode & as %26 so Unsplash/Pexels query-string URLs are valid XML.
+ * encodeURI() does NOT encode & because it's a valid URI character,
+ * but XML attribute values require it to be escaped.
+ */
+function xmlSafeUrl(url: string): string {
+  return url.replace(/&/g, "%26");
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -16,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 1.0,
-      images: [asAbsoluteUrl(siteImages.homeHero)],
+      images: [xmlSafeUrl(asAbsoluteUrl(siteImages.homeHero))],
     },
     {
       url: `${BASE_URL}/about/`,
@@ -24,8 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
       images: [
-        asAbsoluteUrl(siteImages.aboutHero),
-        asAbsoluteUrl(siteImages.featureWallMain),
+        xmlSafeUrl(asAbsoluteUrl(siteImages.aboutHero)),
+        xmlSafeUrl(asAbsoluteUrl(siteImages.featureWallMain)),
       ],
     },
     {
@@ -33,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_UPDATED,
       changeFrequency: "weekly",
       priority: 0.9,
-      images: [asAbsoluteUrl(siteImages.productHero)],
+      images: [xmlSafeUrl(asAbsoluteUrl(siteImages.productHero))],
     },
     {
       url: `${BASE_URL}/portfolio/`,
@@ -41,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
       images: portfolioGalleryImages.slice(0, 12).map((image) =>
-        asAbsoluteUrl(image.src)
+        xmlSafeUrl(asAbsoluteUrl(image.src))
       ),
     },
     {
@@ -49,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: STATIC_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
-      images: [asAbsoluteUrl(siteImages.contactHero)],
+      images: [xmlSafeUrl(asAbsoluteUrl(siteImages.contactHero))],
     },
   ];
 
@@ -58,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: LAST_UPDATED,
     changeFrequency: "weekly" as const,
     priority: 0.85,
-    images: [asAbsoluteUrl(p.image)],
+    images: [xmlSafeUrl(asAbsoluteUrl(p.image))],
   }));
 
   // Location pages rarely change — use a stable date to preserve crawl budget
@@ -68,7 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: STATIC_DATE,
       changeFrequency: "monthly" as const,
       priority: 0.65,
-      images: [asAbsoluteUrl(p.image)],
+      images: [xmlSafeUrl(asAbsoluteUrl(p.image))],
     }))
   );
 

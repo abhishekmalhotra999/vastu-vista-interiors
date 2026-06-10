@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Vastu Vista Interiors — top interior design company in Kolkata for modular kitchens, false ceilings, wardrobes, offices, restaurants & full home renovation. Free consultation.",
+    "Top interior design company in Kolkata for modular kitchens, false ceilings, wardrobes, offices & home renovation. 500+ projects. Free consultation.",
   alternates: {
     canonical: BASE_URL,
   },
@@ -89,6 +89,14 @@ export default function RootLayout({
   return (
     <html lang="en-IN" className={`${playfair.variable} ${inter.variable}`}>
       <head>
+        {/* LCP preload — tells browser to fetch the above-fold hero image
+            before any other resource. Critical for homepage LCP score. */}
+        <link
+          rel="preload"
+          as="image"
+          href="/new_images/False_ceiling/WhatsApp%20Image%202026-06-03%20at%2011.59.40%20(1).webp"
+          type="image/webp"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

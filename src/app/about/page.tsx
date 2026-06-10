@@ -6,7 +6,7 @@ import { BASE_URL, SITE_NAME, breadcrumbSchema, businessAddress } from "@/data/s
 export const metadata: Metadata = {
   title: { absolute: `About ${SITE_NAME} | Interior Designers in Kolkata Since 2014` },
   description:
-    "Vastu Vista Interiors — Kolkata interior design company since 2014. 500+ projects, 20+ locations. Modular kitchens, false ceilings, offices & home renovation.",
+    "Vastu Vista Interiors — Kolkata interior designers since 2014. 500+ projects, 20+ locations. Kitchens, false ceilings, offices & home renovation.",
   alternates: {
     canonical: `${BASE_URL}/about/`,
   },

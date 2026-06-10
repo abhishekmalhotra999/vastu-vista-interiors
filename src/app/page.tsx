@@ -10,7 +10,7 @@ import { BASE_URL, SITE_NAME } from "@/data/seo";
 export const metadata: Metadata = {
   title: { absolute: `Best Interior Designer in Kolkata | ${SITE_NAME}` },
   description:
-    "Vastu Vista Interiors — top interior designers in Kolkata for modular kitchens, false ceilings, wardrobes, bedrooms, offices & home renovation. Free consultation.",
+    "Top interior designers in Kolkata for modular kitchens, false ceilings, wardrobes, bedrooms, offices & home renovation. 500+ projects. Free consultation.",
   alternates: {
     canonical: `${BASE_URL}/`,
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     url: `${BASE_URL}/`,
     title: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
     description:
-      "Top interior design company in Kolkata — modular kitchens, false ceilings, wardrobes, office & home renovation. 500+ projects. Free consultation.",
+      "Top interior designers in Kolkata — kitchens, false ceilings, wardrobes, offices & home renovation. 500+ projects. Free consultation.",
     images: [
       {
         url: absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Best Interior Designer in Kolkata | ${SITE_NAME}`,
     description:
-      "Top interior designers in Kolkata. Modular kitchens, false ceilings, wardrobes & home renovation. 500+ projects delivered. Free consultation.",
+      "Top interior designers in Kolkata. Modular kitchens, false ceilings, wardrobes & home renovation. 500+ projects. Free consultation.",
     images: [absoluteAsset("/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg")],
   },
 };
@@ -237,6 +237,10 @@ export default function HomePage() {
             alt="Premium interior design by Vastu Vista Interiors Kolkata"
             className="w-full h-full object-cover object-center"
             fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            width={1920}
+            height={1080}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />

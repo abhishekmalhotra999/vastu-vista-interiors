@@ -8,7 +8,7 @@ import { BASE_URL, SITE_NAME, breadcrumbSchema } from "@/data/seo";
 export const metadata: Metadata = {
   title: { absolute: `Interior Design Services in Kolkata | ${SITE_NAME}` },
   description:
-    "Explore 20 interior design services in Kolkata: modular kitchen, false ceiling, wardrobes, bedroom, living room, office, restaurant, café & home renovation.",
+    "Explore 20 interior design services in Kolkata: modular kitchen, false ceiling, wardrobes, bedroom, living room, office, restaurant & home renovation.",
   alternates: {
     canonical: `${BASE_URL}/products/`,
   },
