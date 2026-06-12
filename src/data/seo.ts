@@ -2,7 +2,7 @@ import { locations } from "@/data/locations";
 import { products } from "@/data/products";
 import { absoluteAsset } from "@/data/site-images";
 
-export const BASE_URL = "https://vastuvistainteriors.com";
+export const BASE_URL = "https://vastuvista.in";
 export const SITE_NAME = "Vastu Vista Interiors";
 export const DEFAULT_OG_IMAGE = absoluteAsset(
   "/new_images/False_ceiling/WhatsApp Image 2026-06-03 at 11.59.40 (1).jpeg"
