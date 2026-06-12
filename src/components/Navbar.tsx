@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Blog", href: "https://blog.vastuvista.in/", external: true },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -38,15 +39,27 @@ export default function Navbar() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-[#555555] hover:text-[#2D2D2D] transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-[#555555] hover:text-[#2D2D2D] transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-[#555555] hover:text-[#2D2D2D] transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Desktop CTAs */}
@@ -112,16 +125,29 @@ export default function Navbar() {
       {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden bg-white border-t border-[#E5E5E5] px-4 py-4 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block text-sm font-medium text-[#555555] hover:text-[#2D2D2D] py-2 border-b border-[#F0F0F0]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="block text-sm font-medium text-[#555555] hover:text-[#2D2D2D] py-2 border-b border-[#F0F0F0]"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-sm font-medium text-[#555555] hover:text-[#2D2D2D] py-2 border-b border-[#F0F0F0]"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
           <div className="pt-3 flex flex-col gap-2.5">
             <a
               href={`tel:${PHONE}`}
